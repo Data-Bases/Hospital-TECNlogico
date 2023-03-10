@@ -1,4 +1,5 @@
 using CsvHelper;
+using Hospital_TECNologico.Models.Interfaces;
 using Hospital_TECNológico_Backend.Dtos;
 using Hospital_TECNológico_Backend.Helpers;
 using Hospital_TECNológico_Backend.Models;
@@ -16,43 +17,48 @@ namespace Hospital_TECNológico_Backend.Controllers
     public class PatientController : ControllerBase
     {
         private readonly ILogger<PatientController> _logger;
+        private readonly IPatientModel _model;
 
-            
-
-
-        public PatientController(ILogger<PatientController> logger)
+        public PatientController(ILogger<PatientController> logger, IPatientModel patientModel)
         {
             _logger = logger;
+            _model = patientModel;
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [HttpGet(Name = "GetPatients")]
-        public IEnumerable<PatientDto> GetPatients()
+        [HttpGet("GetAllPatients",Name = "GetPatients")]
+        public ActionResult<IEnumerable<PatientDto>> GetPatients()
         {
             if (!ModelState.IsValid)
             {
-                return (IEnumerable<PatientDto>)BadRequest(ModelState);
+                return BadRequest(ModelState);
             }
 
-            var patients = CsvHelperClass.GetAllPatients();
+            var patients = _model.GetPatients();
+
+            return Ok(patients);
+        }
+
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [HttpPost("PostPatient",Name = "PostPatient")]
+        public ActionResult<Result> PostPatient(PatientDto patient)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Result.Error;
+            }
+
+            var patients = _model.PostPatient(patient);
 
             return patients;
         }
 
+        
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [HttpPost(Name = "PostPatient")]
-        public Task PostPatient(PatientDto patient)
-        {
-            
-            return CsvHelperClass.InsertPatients(patient); ;
-        }
-
-        /*
-        [ProducesResponseType(StatusCodes.Status201Created)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [HttpGet(Name = "GetPatient")]
+        [HttpGet("GetPatientById",Name = "GetPatient")]
         public ActionResult<IEnumerable<PatientDto>> GetPatient([FromQuery] int id)
         {
 
@@ -65,7 +71,7 @@ namespace Hospital_TECNológico_Backend.Controllers
 
             return Ok(patient);
         }
-        */
+        
 
 
     }

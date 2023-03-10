@@ -8,8 +8,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="C:\Users\dmeji\.nuget\packages\microsoft.azure.cosmos\3.32.1\contentFiles\any\netstandard2.0\ThirdPartyNotice.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="CsvHelper" Version="30.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.32.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Utilities" Version="17.5.33428.366" />
     <PackageReference Include="NEST" Version="7.17.5" />
+    <PackageReference Include="NUnitTestAdapter.WithFramework" Version="2.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 

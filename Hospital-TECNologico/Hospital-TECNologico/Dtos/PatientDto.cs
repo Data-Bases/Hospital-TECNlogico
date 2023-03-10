@@ -10,6 +10,8 @@ namespace Hospital_TECNológico_Backend.Dtos
         public string Name { get; set; }
         [Name("Id")]
         public int Id { get; set; }
+
+        [JsonIgnore]
         [Name("PhoneNumbers")]
         public string PhoneNumbersString
         {
@@ -25,6 +27,8 @@ namespace Hospital_TECNológico_Backend.Dtos
         public List<string> PhoneNumbers { get; set; }
         [Name("DateOfBirth")]
         public DateTime DateOfBirth { get; set; }
+
+        [JsonIgnore]
         [Name("Pathologies")]
         public string PathologiesString
         {

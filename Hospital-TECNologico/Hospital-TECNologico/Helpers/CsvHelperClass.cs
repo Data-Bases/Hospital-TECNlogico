@@ -1,5 +1,6 @@
 ﻿using CsvHelper;
 using Hospital_TECNológico_Backend.Dtos;
+using Nest;
 using System.Globalization;
 using System.IO;
 
@@ -7,8 +8,7 @@ namespace Hospital_TECNológico_Backend.Helpers
 {
     public static class CsvHelperClass
     {
-        const string path = @"example.csv";
-        public static Task InsertPatients(PatientDto patient)
+        public static Result WriteEntities(object entity, string path)
         {
             var appendMode = File.Exists(path);
             using (StreamWriter writer = new StreamWriter(path, appendMode))
@@ -16,60 +16,54 @@ namespace Hospital_TECNológico_Backend.Helpers
             {
                 if (!appendMode)
                 {
-                    csvWriter.WriteHeader<PatientDto>();
+                    csvWriter.WriteHeader<object>();
                     csvWriter.NextRecord();
-                    csvWriter.WriteRecord(patient);
+                    csvWriter.WriteRecord(entity);
                 }
                 else
                 {
                     csvWriter.NextRecord();
-                    csvWriter.WriteRecord(patient);
+                    csvWriter.WriteRecord(entity);
                 }
             }
-
-
-
-
-            return Task.CompletedTask;
+ 
+            return Result.Created;
         }
 
-        public static List<PatientDto> GetAllPatients()
+        public static List<object> GetAllEntities(string path)
         {
-            var patients = new List<PatientDto>();
+            var entities = new List<object>();
 
             using (StreamReader reader = new StreamReader(path))
             {
-                // Create a new CsvReader object and configure it
                 CsvReader csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
 
-                // Read the records from the CSV file and convert them to a list of Person objects
-                patients = csvReader.GetRecords<PatientDto>().ToList();
+                entities = csvReader.GetRecords<object>().ToList();
             }
 
-            return patients;
+            return entities;
         }
 
-        public static PatientDto GetPatientById(int patientId)
+        public static object GetEntityById(int entityId, string path)
         {
-            var patient = new PatientDto();
+            var entity = new object();
             using (StreamReader reader = new StreamReader(path))
             {
-                // Create a new CsvReader object and configure it
                 CsvReader csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
 
                 while (csvReader.Read())
                 {
                     int id = csvReader.GetField<int>("Id");
 
-                    if (id == patientId)
+                    if (id == entityId)
                     {
-                        patient = csvReader.GetRecord<PatientDto>();
-                        return patient;
+                        entity = csvReader.GetRecord<PatientDto>();
+                        return entity;
                     }
                 }
             }
 
-            return patient;
+            return entity;
         }
     }
     

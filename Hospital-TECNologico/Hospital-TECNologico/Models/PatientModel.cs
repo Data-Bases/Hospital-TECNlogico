@@ -1,28 +1,29 @@
-﻿using Hospital_TECNológico_Backend.Dtos;
-using Hospital_TECNológico_Backend.Repositories;
+﻿using Hospital_TECNologico.Models.Interfaces;
+using Hospital_TECNologico.Repositories.Interfaces;
+using Hospital_TECNológico_Backend.Dtos;
 using Nest;
 
 namespace Hospital_TECNológico_Backend.Models
 {
-    public class PatientModel
+    public class PatientModel : IPatientModel
     {
-        private readonly PatientRepository _patientRepository;
-        public PatientModel(PatientRepository patientRepository)
+        private readonly ILogger<PatientModel> _logger;
+        private readonly IPatientRepository _patientRepository;
+        public PatientModel(ILogger<PatientModel> logger, IPatientRepository patientRepository)
         {
+            _logger = logger;
             _patientRepository = patientRepository;
         }
 
         public Result PostPatient(PatientDto patient)
         {
             var sendPatient = _patientRepository.InsertPatients(patient);
-            if (!sendPatient.IsCompleted)
+            if (!sendPatient.Equals(1))
             {
                 return Result.Error;
             }
             return Result.Created;
         }
-
-        
 
         public PatientDto GetPatientById(int id)
         {   
