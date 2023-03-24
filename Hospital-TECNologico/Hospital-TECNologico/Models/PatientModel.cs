@@ -30,7 +30,7 @@ namespace Hospital_TECNológico_Backend.Models
             var getPatientFromId = _patientRepository.GetPatientById(id);
             if (getPatientFromId == null)
             {
-                return new PatientDto();
+                return null;
             }
             return getPatientFromId;
         }

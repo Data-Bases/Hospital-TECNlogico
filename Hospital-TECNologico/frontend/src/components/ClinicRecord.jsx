@@ -3,7 +3,7 @@ import Header from "./Header"
 import { useState } from "react"
 import axios from "axios"
 
-const baseURL = "https://localhost:44382/hospital/tecnoligco/Patient/GetPatientById/"
+const baseURL = "http://localhost:9095/hospital/tecnoligco/Patient/GetPatientById/"
 
 function ClinicRecord({id}) {
     const [userData, setUserData] = useState(
@@ -25,7 +25,10 @@ function ClinicRecord({id}) {
         userData.NOMBRE = response.data.name
         setUserData(userData)
         setReload(true)
+    }).catch((e) => {
+        alert("El usuario no existe")
     })
+
 
     return(
         <Container>

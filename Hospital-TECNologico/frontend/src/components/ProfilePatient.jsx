@@ -2,7 +2,7 @@ import { Container } from "react-bootstrap"
 import { useState} from "react"
 import Header from "./Header"
 import axios from "axios"
-const baseURL = "https://localhost:44382/hospital/tecnoligco/Patient/GetPatientById/"
+const baseURL = "http://localhost:9095/hospital/tecnoligco/Patient/GetPatientById/"
 
 function ProfilePatient({id}) {
     const [userData, setUserData] = useState(
@@ -20,10 +20,12 @@ function ProfilePatient({id}) {
     const [reload, setReload] = useState(false)
     // HACER GET
     axios.get(baseURL + id).then((response) => {
-        console.log(response.data.name)
+        console.log(response.data)
         userData.NOMBRE = response.data.name
         setUserData(userData)
         setReload(true)
+    }).catch((e) => {
+        alert("El usuario no existe")
     })
 
 

@@ -4,7 +4,7 @@ import { Button, Container } from 'react-bootstrap';
 import useLocation from 'wouter/use-location';
 import axios from 'axios';
 
-const baseURL = "https://localhost:44382/hospital/tecnoligco/Patient/PostPatient";
+const baseURL = "http://localhost:9095/hospital/tecnoligco/Patient/PostPatient";
 
 
 function SingUp(){
@@ -41,7 +41,7 @@ function SingUp(){
                         method: "POST",
                         url: baseURL, 
                         headers: {
-                            accept: 'text/plain',
+                            'accept': 'text/plain',
                             'Content-Type': 'application/json'
                         },
                         data: {

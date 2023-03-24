@@ -20,6 +20,7 @@ namespace Hospital_TECNologico
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddRazorPages();
             services.AddControllers();
             services.AddEndpointsApiExplorer();

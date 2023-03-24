@@ -5,6 +5,7 @@ using Hospital_TECNológico_Backend.Helpers;
 using Nest;
 using AutoMapper;
 using System.Globalization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Hospital_TECNológico_Backend.Repositories
 {
@@ -53,8 +54,7 @@ namespace Hospital_TECNológico_Backend.Repositories
             return entities;
         }
 
-        public PatientDto GetPatientById(int patientId)
-        .log{
+        public PatientDto GetPatientById(int patientId){
             var patient = new PatientDto();
             using (StreamReader reader = new StreamReader(path))
             {
@@ -64,11 +64,6 @@ namespace Hospital_TECNológico_Backend.Repositories
                 {
                     patient = csvReader.GetRecord<PatientDto>();
 
-                    if(patient == null)
-                    {
-                        return new PatientDto();
-                    }
-
                     if (patient.Id == patientId)
                     {
                         return patient;
@@ -76,7 +71,7 @@ namespace Hospital_TECNológico_Backend.Repositories
                 }
             }
 
-            return patient;
+            return null;
         }
     }
 }
