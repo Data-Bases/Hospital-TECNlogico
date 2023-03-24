@@ -5,7 +5,8 @@ import axios from "axios"
 
 const baseURL = "https://localhost:44382/hospital/tecnoligco/Patient/GetPatientById/"
 
-function ClinicRecord({id}) {
+function Reservations ({id}){
+
     const [userData, setUserData] = useState(
         {
             "NOMBRE": "",
@@ -29,9 +30,8 @@ function ClinicRecord({id}) {
 
     return(
         <Container>
-            <Header name={userData.NOMBRE} id={id}/>
+            <Header name={userData.NOMBRE} id={id} rol="1"/>
         </Container>
     )
 }
-
-export default ClinicRecord
+export default Reservations

@@ -1,33 +1,29 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import  {Route, useLocation}  from 'wouter'
+import SingUp from './SingUp'
+import LogIn from './LogIn'
+import ProfilePatient from './ProfilePatient'
+import ClinicRecord from './ClinicRecord'
+import Reservations from './Reservations'
+import ProfileDoctor from './ProfileDoctor'
+import CreateUser from './CreateUser'
+import Welcome from './Welcome'
+import AddClinicRecord from './AddClinicRecord'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <>
+      <Route path="/" component = {Welcome} />
+      <Route path="/singup" component = {SingUp}/>
+      <Route path="/login" component = {LogIn} />
+      <Route path="/patient/:id">{(params) => <ProfilePatient id={params.id}/>}</Route>
+      <Route path="/clinic-record/:id">{(params) => <ClinicRecord id={params.id}/>}</Route>
+      <Route path="/reservations/:id">{(params) => <Reservations id={params.id}/>}</Route>
+      <Route path="/doctor/:id">{(params) => <ProfileDoctor id={params.id}/>}</Route>
+      <Route path="/create-user" component = {CreateUser} />
+      <Route path="/add-clinic-record" component = {AddClinicRecord} />
+    </>
   )
 }
 

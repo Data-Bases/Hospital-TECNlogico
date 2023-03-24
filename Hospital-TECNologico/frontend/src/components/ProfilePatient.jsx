@@ -1,11 +1,10 @@
 import { Container } from "react-bootstrap"
+import { useState} from "react"
 import Header from "./Header"
-import { useState } from "react"
 import axios from "axios"
-
 const baseURL = "https://localhost:44382/hospital/tecnoligco/Patient/GetPatientById/"
 
-function ClinicRecord({id}) {
+function ProfilePatient({id}) {
     const [userData, setUserData] = useState(
         {
             "NOMBRE": "",
@@ -19,7 +18,7 @@ function ClinicRecord({id}) {
         }
     )
     const [reload, setReload] = useState(false)
-
+    // HACER GET
     axios.get(baseURL + id).then((response) => {
         console.log(response.data.name)
         userData.NOMBRE = response.data.name
@@ -27,11 +26,14 @@ function ClinicRecord({id}) {
         setReload(true)
     })
 
-    return(
+
+
+    return (
         <Container>
-            <Header name={userData.NOMBRE} id={id}/>
+            <Header name={userData.NOMBRE} id={id} rol="1" />
         </Container>
     )
+
 }
 
-export default ClinicRecord
+export default ProfilePatient

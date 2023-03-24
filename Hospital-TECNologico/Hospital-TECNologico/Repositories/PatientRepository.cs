@@ -54,7 +54,7 @@ namespace Hospital_TECNológico_Backend.Repositories
         }
 
         public PatientDto GetPatientById(int patientId)
-        {
+        .log{
             var patient = new PatientDto();
             using (StreamReader reader = new StreamReader(path))
             {

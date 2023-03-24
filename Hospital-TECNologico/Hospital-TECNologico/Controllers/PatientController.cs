@@ -6,6 +6,7 @@ using Hospital_TECNológico_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Nest;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Formats.Asn1;
 using System.Globalization;
 using System.IO;
@@ -13,7 +14,7 @@ using System.IO;
 namespace Hospital_TECNológico_Backend.Controllers
 {
     [ApiController]
-    [Route("Hospital/TECNoligco/[controller]")]
+    [Route("hospital/tecnoligco/[controller]")]
     public class PatientController : ControllerBase
     {
         private readonly ILogger<PatientController> _logger;
@@ -58,8 +59,8 @@ namespace Hospital_TECNológico_Backend.Controllers
         
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [HttpGet("GetPatientById",Name = "GetPatient")]
-        public ActionResult<IEnumerable<PatientDto>> GetPatient([FromQuery] int id)
+        [HttpGet("GetPatientById/{id}",Name = "GetPatient")]
+        public ActionResult<IEnumerable<PatientDto>> GetPatient([Required] int id)
         {
 
             if (!ModelState.IsValid)

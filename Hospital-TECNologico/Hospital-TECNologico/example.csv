@@ -2,3 +2,9 @@ Name,Id,PhoneNumbers,DateOfBirth,Pathologies
 Diana,2,87730274,03/10/2023 01:56:22,vertigo:niamina
 Meli,3,87730274|88063580,04/10/2023 01:56:22,vertigo:niamina|migraña:avamigran
 Geo,4,84473562,03/10/2023 17:53:19,Allergies:allegro
+Dario,5,87754126,06/06/2002 00:00:00,allergies:none
+string,5,string,03/24/2023 07:25:34,string:string
+Ramses,123457,31431343,03/24/2023 07:43:38,gripe:baño
+string,848,string,03/24/2023 00:00:00,string:string
+Ramses,123459,31431343,03/24/2023 00:00:00,gripe:baño
+Ramses,231,2344,03/17/2023 00:00:00,dfsfe:dfsfdg
