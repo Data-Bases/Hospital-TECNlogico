@@ -7,22 +7,22 @@ function LogIn(){
     const [location, setLocation] = useLocation()
     const [userID, setUserId] = useState(0)
     return(
-        <>
+        <Container className="d-flex p-5 flex-column align-items-center w-100 h-100 justify-items-center">
         <h1>HOSPITAL TECNOLÓGICO</h1>
-        <Container>
-            <form>
-                <label>
-                    CÉDULA
-                    <input type="text" name="id" onChange={(event) => {setUserId(event.target.value)}}/>
+        <Container className='secondary p-3 w-50 d-flex flex-column align-items-center h-50 rounded'>
+            <form className="d-flex p-1 flex-column align-items-center">
+                <label className="m-2 text-primary">
+                    CÉDULA:  
+                    <input className="ms-4" type="text" name="id" onChange={(event) => {setUserId(event.target.value)}}/>
                 </label>
-                <label>
-                    CONTRASEÑA
-                    <input type="text" name="password"/>
+                <label className="m-2 text-primary">
+                    CONTRASEÑA:  
+                    <input className="ms-4" type="text" name="password"/>
                 </label>
-                <Button variant="primary" onClick={() => setLocation("/patient/"+userID)}> Log In </Button>
+                <Button variant="primary" className="m-2" onClick={() => setLocation("/patient/"+userID)}> Log In </Button>
             </form>
         </Container>
-        </>
+        </Container>
     )
 }
 
