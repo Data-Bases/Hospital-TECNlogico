@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Button, Container } from 'react-bootstrap';
 import useLocation from 'wouter/use-location';
 import axios from 'axios';
+import { Link } from 'wouter';
 
 const baseURL = "http://localhost:9095/hospital/tecnoligco/Patient/PostPatient";
 
@@ -38,7 +39,7 @@ function SingUp(){
                     </label>
                     )
                 }
-                <Button variant="primary" onClick={() => {
+                <Button variant="primary" className='m-2' onClick={() => {
                     axios({
                         method: "POST",
                         url: baseURL, 
@@ -67,6 +68,8 @@ function SingUp(){
                         alert(error)
                     });
                     }}> Registrarse </Button>
+
+                    <Button variant='primary' className='text-black text-decoration-none m-2'><Link href='/'> Regresar </Link></Button>
             </form>
             </Container>
         </Container>

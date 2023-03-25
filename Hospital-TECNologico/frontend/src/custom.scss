@@ -1,12 +1,13 @@
 /* make the customizations */
 $primary: #ffffff;
 $secondary: #14246d;
-$background: #e0e0e0;
+$background: #efefef;
 
 $theme-colors: (
     "primary": $primary,
     "secondary": $secondary,
     "background": $background
+
 );
 
 /* import bootstrap to set changes */

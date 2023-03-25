@@ -3,8 +3,8 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 
 
-function Header({name, id, rol}) {
-    const [radioValue, setRadioValue] = useState('1');
+function Header({name, id, rol, radio}) {
+    const [radioValue, setRadioValue] = useState(radio);
     const [location, setLocation] = useLocation();
     const  vistas = [
         { name: 'Reservaciones', value: '1', url: "/reservations/" },
@@ -12,27 +12,27 @@ function Header({name, id, rol}) {
         { name: 'Perfil', value: '3', url: "/patient/"},
       ];
     return(
-        <Container>
-            <ButtonGroup>
+        <Container className="d-flex px-5 py-0 flex-column align-items-center w-100 h-100 justify-items-center">
+            <ButtonGroup className="w-100 d-flex flex-direction-row">
                 {vistas.map((vista, idx) => (
                 <ToggleButton
                     key={idx}
                     id={`vista-${idx}`}
                     type="radio"
-                    variant="primary"
+                    variant="secondary"
+                    className="text-decoration-none w-25"
                     name="vista"
                     value={vista.value}
                     checked={radioValue === vista.value}
                     onChange={(e) => setRadioValue(e.currentTarget.value)}
                 >
-                    <Link href={vista.url + id} style={{color: "black"}}>
+                    <Link href={vista.url + id} style={{color: "black"}} className="text-decoration-none text-white">
                     {vista.name}
                     </Link>
                 </ToggleButton>
                 ))}
             </ButtonGroup>
-            <img></img>
-            <h2>{name}</h2>
+            <h2 className="align-self-start">{name}</h2>
         </Container>
     )
 }
