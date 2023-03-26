@@ -12,6 +12,7 @@ function Welcome() {
         <Container className='secondary p-3 w-50 d-flex flex-column align-items-center h-50 rounded'>
                 <Button variant='primary' className='m-4' onClick={() => setLocation("/login")}>Iniciar Sesión</Button>
                 <Button variant='primary' className="m-4" onClick={() => setLocation("/singup")}>Registrarse</Button>
+                <Button variant='primary' className="m-4" onClick={() => setLocation("/doctor/1")}>Vista Doctor</Button>
         </Container>
     </Container>
 

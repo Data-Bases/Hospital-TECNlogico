@@ -9,6 +9,7 @@ import ProfileDoctor from './ProfileDoctor'
 import CreateUser from './CreateUser'
 import Welcome from './Welcome'
 import AddClinicRecord from './AddClinicRecord'
+import AllPatients from './AllPatients'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
       <Route path="/doctor/:id">{(params) => <ProfileDoctor id={params.id}/>}</Route>
       <Route path="/create-user" component = {CreateUser} />
       <Route path="/add-clinic-record" component = {AddClinicRecord} />
+      <Route path='/view-all-patients' component={AllPatients} />
     </>
   )
 }

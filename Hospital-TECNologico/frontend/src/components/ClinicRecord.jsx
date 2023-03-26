@@ -32,11 +32,11 @@ function ClinicRecord({id}) {
     // User data for tests
     const userData = {
         "NOMBRE": "Pi",
-        "APELLIDO": "Chudo",
-        "CEDULA": "31415926",
+        "APELLIDO": "Doc",
+        "CEDULA": "3145926",
         "TELEFONO": "53589793",
         "DIRECCIÓN": "la rotonda",
-        "FECHA DE NACIMIENTO": "3141-3-14",
+        "FECHA DE NACIMIENTO": "314-3-14",
         "PATOLOGIAS": "irracional",
         "TRATAMIENTOS": "radio",
     }
