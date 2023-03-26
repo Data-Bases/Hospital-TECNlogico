@@ -13,13 +13,14 @@ namespace Hospital_TECNológico_Backend.Repositories
     {
         const string path = @"example.csv";
         private readonly IMapper _mapper;
-        public PatientRepository(IMapper mapper) 
-        { 
+        public PatientRepository(IMapper mapper)
+        {
             _mapper = mapper;
         }
 
         public Result InsertPatients(PatientDto patient)
         {
+            var isPatientInFile = GetPatientById(patient.Id);
             var appendMode = File.Exists(path);
             using (StreamWriter writer = new StreamWriter(path, appendMode))
             using (CsvWriter csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
@@ -32,12 +33,17 @@ namespace Hospital_TECNológico_Backend.Repositories
                 }
                 else
                 {
+                    if (isPatientInFile != null)
+                    {
+                        return Result.Error;
+                    }
                     csvWriter.NextRecord();
                     csvWriter.WriteRecord(patient);
                 }
             }
 
             return Result.Created;
+
         }
 
         public List<PatientDto> GetPatients()
@@ -54,7 +60,8 @@ namespace Hospital_TECNológico_Backend.Repositories
             return entities;
         }
 
-        public PatientDto GetPatientById(int patientId){
+        public PatientDto GetPatientById(int patientId)
+        {
             var patient = new PatientDto();
             using (StreamReader reader = new StreamReader(path))
             {

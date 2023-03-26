@@ -18,7 +18,7 @@ namespace Hospital_TECNológico_Backend.Models
         public Result PostPatient(PatientDto patient)
         {
             var sendPatient = _patientRepository.InsertPatients(patient);
-            if (!sendPatient.Equals(1))
+            if (sendPatient.Equals(Result.Error))
             {
                 return Result.Error;
             }

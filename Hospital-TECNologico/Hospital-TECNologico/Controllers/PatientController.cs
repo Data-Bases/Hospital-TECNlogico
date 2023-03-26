@@ -30,7 +30,7 @@ namespace Hospital_TECNológico_Backend.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpGet("GetAllPatients",Name = "GetPatients")]
+        [HttpGet("GetAllPatients", Name = "GetPatients")]
         public ActionResult<IEnumerable<PatientDto>> GetPatients()
         {
             if (!ModelState.IsValid)
@@ -52,7 +52,8 @@ namespace Hospital_TECNológico_Backend.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        [HttpPost("PostPatient",Name = "PostPatient")]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [HttpPost("PostPatient", Name = "PostPatient")]
         public ActionResult<Result> PostPatient(PatientDto patient)
         {
             if (!ModelState.IsValid)
@@ -62,13 +63,19 @@ namespace Hospital_TECNológico_Backend.Controllers
 
             var patients = _model.PostPatient(patient);
 
+            if (patients.Equals(Result.Error))
+            {
+                return BadRequest();
+            }
+
+
             return patients;
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [HttpGet("GetPatientById/{id}",Name = "GetPatient")]
+        [HttpGet("GetPatientById/{id}", Name = "GetPatient")]
         public ActionResult<IEnumerable<PatientDto>> GetPatient([Required] int id)
         {
 
@@ -86,7 +93,7 @@ namespace Hospital_TECNológico_Backend.Controllers
 
             return Ok(patient);
         }
-        
+
 
 
     }
