@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Container, Button } from "react-bootstrap"
+import { useLocation } from "wouter"
 import Header from "./Header"
 
 function AddClinicRecord(){
@@ -11,6 +12,7 @@ function AddClinicRecord(){
             "TRATAMIENTOS": ""
         }
     )
+    const [location, setLocation] = useLocation()
     return(
         <Container className="d-flex p-5 flex-column align-items-center w-100 h-100 justify-items-center">
             <Header name={"Fill the user Info"} id={0} rol="2" radio="1"/>
@@ -30,7 +32,7 @@ function AddClinicRecord(){
                     <Button variant="primary" className='m-2' onClick={() => {
                         alert("usuario creado")
                         }}> Actualizar Datos </Button>
-                    <Button variant="primary" className="m-2" onClick={() => {setLocation("/view-all-patients")}}></Button>
+                    <Button variant="primary" className="m-2" onClick={() => {setLocation("/view-all-patients")}}>Ver Pacientes</Button>
                 </form>
             </Container>
         </Container>

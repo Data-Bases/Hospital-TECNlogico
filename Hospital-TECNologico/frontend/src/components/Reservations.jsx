@@ -7,40 +7,40 @@ const baseURL = "http://localhost:9095/hospital/tecnoligco/Patient/GetPatientByI
 
 function Reservations ({id}){
 
-    // const [userData, setUserData] = useState(
-    //     {
-    //         "NOMBRE": "",
-    //         "APELLIDO": "",
-    //         "CEDULA": "",
-    //         "TELEFONO": "",
-    //         "DIRECCIÓN": "",
-    //         "FECHA DE NACIMIENTO": "",
-    //         "PATOLOGIAS": "",
-    //         "TRATAMIENTOS": "",
-    //     }
-    // )
-    // const [reload, setReload] = useState(false)
+    const [userData, setUserData] = useState(
+        {
+            "NOMBRE": "",
+            "APELLIDO": "",
+            "CEDULA": "",
+            "TELEFONO": "",
+            "DIRECCIÓN": "",
+            "FECHA DE NACIMIENTO": "",
+            "PATOLOGIAS": "",
+            "TRATAMIENTOS": "",
+        }
+    )
+    const [reload, setReload] = useState(false)
 
-    // axios.get(baseURL + id).then((response) => {
-    //     console.log(response.data.name)
-    //     userData.NOMBRE = response.data.name
-    //     setUserData(userData)
-    //     setReload(true)
-    // }).catch((e) => {
-    //     alert("El usuario no existe")
-    // })
+    axios.get(baseURL + id).then((response) => {
+        console.log(response.data.name)
+        userData.NOMBRE = response.data.name
+        setUserData(userData)
+        setReload(true)
+    }).catch((e) => {
+        alert("El usuario no existe")
+    })
 
     // User data for tests
-    const userData = {
-        "NOMBRE": "Pi",
-        "APELLIDO": "Doc",
-        "CEDULA": "3145926",
-        "TELEFONO": "53589793",
-        "DIRECCIÓN": "la rotonda",
-        "FECHA DE NACIMIENTO": "314-3-14",
-        "PATOLOGIAS": "irracional",
-        "TRATAMIENTOS": "radio",
-    }
+    // const userData = {
+    //     "NOMBRE": "Pi",
+    //     "APELLIDO": "Doc",
+    //     "CEDULA": "3145926",
+    //     "TELEFONO": "53589793",
+    //     "DIRECCIÓN": "la rotonda",
+    //     "FECHA DE NACIMIENTO": "314-3-14",
+    //     "PATOLOGIAS": "irracional",
+    //     "TRATAMIENTOS": "radio",
+    // }
 
 
     return(
