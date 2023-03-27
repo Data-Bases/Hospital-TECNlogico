@@ -1,5 +1,6 @@
-import { Container } from "react-bootstrap"
+import { Container, Button } from "react-bootstrap"
 import Header from "./Header"
+import { Link } from "wouter"
 
 function ProfileDoctor({id}) {
 
@@ -24,6 +25,7 @@ function ProfileDoctor({id}) {
                 DIRECCIÓN: {userData.DIRECCIÓN} <br/>
                 FECHA DE NACIMIENTO: {userData["FECHA DE NACIMIENTO"]}
             </p>
+            <Button variant='secondary' className='text-white text-decoration-none m-2'><Link href='/'> Regresar </Link></Button>
         </Container>
     )
 }

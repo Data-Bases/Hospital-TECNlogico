@@ -23,6 +23,15 @@ function ClinicRecord({id}) {
     axios.get(baseURL + id).then((response) => {
         console.log(response.data.name)
         userData.NOMBRE = response.data.name
+        userData.CEDULA = response.data.id
+        userData.TELEFONO = response.data.phoneNumbers.map((tel) => tel)
+        userData.PATOLOGIAS = response.data.pathologies.map(
+            (pat) => pat.name
+        )
+        userData.TRATAMIENTOS = response.data.pathologies.map(
+            (pat) => pat.treatment
+        )
+        userData["FECHA DE NACIMIENTO"] = response.data.dateOfBirth
         setUserData(userData)
         setReload(true)
     }).catch((e) => {
