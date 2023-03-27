@@ -69,7 +69,7 @@ function SingUp(){
                     });
                     }}> Registrarse </Button>
 
-                    <Button variant='primary' className='text-black text-decoration-none m-2'><Link href='/'> Regresar </Link></Button>
+                    <Button variant='primary' className='text-black text-decoration-none m-2'><Link className= 'text-black text-decoration-none' href='/'> Regresar </Link></Button>
             </form>
             </Container>
         </Container>
